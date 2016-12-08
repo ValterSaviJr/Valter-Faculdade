@@ -1,0 +1,541 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Universidade Federal de Santa Catarina             
+% Biblioteca Universitária                     
+%----------------------------------------------------------------------
+% Exemplo de utilização da documentclass ufscThesis
+%----------------------------------------------------------------------                                                           
+% (c)2013 Roberto Simoni (roberto.emc@gmail.com)
+%         Carlos R Rocha (cticarlo@gmail.com)
+%         Rafael M Casali (rafaelmcasali@yahoo.com.br)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{ufscThesis} % Definicao do documentclass ufscThesis	
+
+%----------------------------------------------------------------------
+% Pacotes usados especificamente neste documento
+\usepackage{graphicx} % Possibilita o uso de figuras e gráficos
+\usepackage{color}    % Possibilita o uso de cores no documento
+\usepackage{pdfpages} % Possibilita a inclusão da ficha catalográfica
+\usepackage{listings}
+\usepackage{multirow} %usar mesclagem de linhas nas tabelas
+\usepackage{float}
+\usepackage{booktabs}
+%----------------------------------------------------------------------
+% Comandos criados pelo usuário
+\newcommand{\afazer}[1]{{\color{red}{#1}}} % Para destacar uma parte a ser trabalhada
+\newcommand{\ABNTbibliographyname}{REFERÊNCIAS} % Necessário para abnTeX 0.8.2
+
+%----------------------------------------------------------------------
+% Identificadores do trabalho
+% Usados para preencher os elementos pré-textuais
+\instituicao[a]{Universidade Federal de Santa Catarina} % Opcional
+\departamento[a]{Biblioteca Universitária}
+\curso[a]{Universidade Federal de Santa Catarina}
+\documento[o]{Trabalho de Conclusão de curso} % [o] para dissertação [a] para tese
+\titulo{Arquitetura de Controle Autonômica para Abrigos de Cultivo}
+\subtitulo{} % Opcional
+\autor{Valter Savi Junior}
+\grau{Bacharel em Engenharia de Computação}
+\local{Araranguá} % Opcional (Florianópolis é o padrão)
+\data{16}{Novembro}{2016}
+\orientador[Orientador]{Prof. Anderson Luiz Fernandes Perez, Dr.}
+%\coorientador[Coorientador\\]{Prof. Dr.}
+\coordenador[Coordenador\\Universidade ...]{Prof. Dr. }
+
+\numerodemembrosnabanca{4} % Isso decide se haverá uma folha adicional
+\orientadornabanca{sim} % Se faz parte da banca definir como sim
+\coorientadornabanca{nao} % Se faz parte da banca definir como sim
+%\bancaMembroA{Primeiro membro\\Universidade ...} %Nome do presidente da banca
+%\bancaMembroB{Segundo membro\\Universidade ...}      % Nome do membro da Banca
+%\bancaMembroC{Terceiro membro\\Universidade ...}     % Nome do membro da Banca
+%\bancaMembroD{Quarto membro\\Universidade ...}       % Nome do membro da Banca
+%\bancaMembroE{Quinto membro\\Universidade ...}       % Nome do membro da Banca
+%\bancaMembroF{Sexto membro\\Universidade ...}        % Nome do membro da Banca
+%\bancaMembroG{Sétimo membro\\Universidade ...}       % Nome do membro da Banca
+
+%\dedicatoria{Este trabalho é dedicado aos meus colegas de classe e aos meus queridos pais.}
+
+%\agradecimento{Inserir os agradecimentos aos colaboradores à execução do trabalho.}
+
+%\epigrafe{Texto da Epígrafe. Citação relativa ao tema do trabalho. É opcional. A epígrafe pode também aparecer na abertura de cada seção ou capítulo.}
+%{(Autor da epígrafe, ano)}
+
+\textoResumo {O cultivo em ambiente protegido vem aumentando em escala mundial, devido aos benefícios gerados pelo micro-clima criado em seu interior, que permite prover um ambiente, se manejado de forma correta, próspero para o cultivo. Este micro clima, apesar de proporcionar grande benefício é tido como um grande desafio, devido ao fato de necessitar um correto manejo do ambiente, caso contrário pode gerar um clima desfavorável colocando a cultura em perigo. Já existem sistemas de controle destes ambientes, porém ainda necessitam forte monitoramento dos equipamentos, para que o sistema opere de maneira correta. Este trabalho tem como proposta utilizar o conceito de Internet das Coisas (IoT do inglês \textit{Internet of Things}) para prover o controle do ambiente, utilizando módulos sensores e atuadores como objetos/coisas que promovem serviços para o controle do abrigo. Além dos conceitos da IoT o trabalho também propõe o uso de conceitos da computação autonômica para tornar o abrigo mais seguro do ponto de vista do funcionamento dos equipamentos de monitoramento do ambiente.}
+\palavrasChave {Internet das Coisas, Computação Autonômica, Automação Agrícola, Abrigos de Cultivo.}
+ 
+%\textAbstract {Resumo traduzido para outros idiomas, neste caso, inglês. Segue o %formato do resumo feito na língua vernácula. As palavras-chave traduzidas, versão em %língua estrangeira, são colocadas abaixo do texto precedidas pela expressão %``Keywords'', separadas por ponto.}
+%\keywords {Keyword 1. Keyword 2. Keyword 3.}
+
+%----------------------------------------------------------------------
+% Início do documento                                
+\begin{document}
+
+
+	
+	
+	
+	
+%--------------------------------------------------------
+% Elementos pré-textuais
+\capa  
+
+
+\begin{titlepage}
+	\vfill
+	\begin{center}
+		%{\large \ABNTautordata} \\[5cm]
+		\ABNTautordata \\[5cm]
+		
+		\tituloformat{\ABNTtitulodata} \\[1cm]
+		%\tituloformat{\subtitulodata}\\[1cm] Pra quem possui subtitulo
+		
+		\hspace{.45\textwidth} % posicionando a minipage
+		\begin{minipage}{.5\textwidth}
+			\begin{espacosimples}
+				
+				Trabalho de Conclusão de Curso submetido à \ABNTinstituicaodata,
+				como parte dos requisitos necessários para a obtenção do Grau de
+				Bacharel em Engenharia de Computação.
+				
+				Orientador: Prof. Anderson Luiz Fernandes Perez, Dr.
+			\end{espacosimples}
+		\end{minipage}
+		\vfill \localformat \ABNTlocaldata, \mesdata\ de \anodata.
+		
+		
+	\end{center}
+	\vspace{1cm}
+\end{titlepage}	
+
+
+
+
+%\folhaderosto[] % Se nao quiser imprimir a ficha, é só não usar o parâmetro comficha
+%\folhaaprovacao
+%\paginadedicatoria
+%\paginaagradecimento
+%\paginaepigrafe
+\paginaresumo
+\paginaabstract
+%\pretextuais % Substitui todos os elementos pre-textuais acima
+\listadefiguras % as listas dependem da necessidade do usuário
+%\listadetabelas 
+\listadeabreviaturas
+%\listadesimbolos
+\sumario
+
+%Abreviações
+\abreviatura{RFID} {\textit{Radio-Frequency IDentification}}
+\abreviatura{IERC} {\textit{European Research Cluster on the Internet of Things}}
+\abreviatura{ITU}  {\textit{International Telecommunications Union}}
+\abreviatura{IoT}  {\textit{Internet of Things}}
+\abreviatura{TIC}  {Tecnologia da Informação e Comunicação}
+\abreviatura{IP}   {\textit{Internet Protocol}}
+\abreviatura{EPC}  {\textit{Eletronic Product Code}}
+\abreviatura{uCode}{Codificação Ubíqua}
+%--------------------------------------------------------
+% Elementos textuais
+
+
+
+
+\chapter{Introdução}
+
+O cultivo em ambiente protegido vem aumentando em escala mundial. E este geralmente é feito em estufas cobertas por um material translúcido, onde em seu interior é possível gerar um microclima favorável para a cultura, proporcionando benefícios jamais alcançados no cultivo tradicional \cite{de2015automaccao}.
+
+O cultivo em ambientes protegidos permite que o agricultor obtenha maior eficiência no controle de pragas, redução da sazonalidade, melhor proveito dos recursos como $CO_2$, água e Radiação solar. Trazendo assim uma melhor qualidade para a cultura \cite{guiselini2010manejo}.
+
+No Brasil, esta técnica foi empregada nos anos 70, crescendo de maneira abrupta nos anos 80. Apesar da rápida popularização no País, não há dados precisos sobre a área de cultivo protegido no Brasil \cite{vermesan2013internet}. As informações técnicas sobre o desempenho das plantas neste âmbito provenientes de experimentos e pesquisas, demonstram que as culturas cultivas nos abrigos possuem melhor desempenho comparadas com o cultivo tradicional \cite{abrah2014}.
+
+
+O grande benefício dos ambientes protegidos, ou seja, o micro clima, é também seu grande desafio. Gerenciar todas as variáveis como temperatura, umidade, luz solar, radiação, nutrientes, ventilação, etc, é algo muito delicado, algum erro no manejo do ambiente pode ocasionar um efeito contrário, isto é, gerar um micro clima favorável para o surgimento de pragas, e estas apresentaram-se muito mais nocivas do que em ambientes abertos. Além das pragas, a falha no manejo pode tornar o micro clima inóspito para a cultura, colocando em risco todo o cultivo  \cite{vermesan2013internet, purquerio2006manejo}.
+
+
+Atualmente o gerenciamento dos ambientes protegidos são todos efetuados de maneira semi autônoma, existem sistemas e ferramentas que auxiliam no controle e automação do abrigo, como sistemas de acionamento dos equipamentos (exaustores, irrigadores, sombrites, etc) para a aquisição de informações do ambiente como temperatura e umidade. Porém, a responsabilidade do gerenciamento dessas ferramentas e a correta utilização das mesmas, é de responsabilidade  do agricultor. Este deve estar atento a todas as variáveis importantes para a cultura tornando assim o abrigo fortemente dependente do monitoramento do agricultor \cite{junior2011estufas, uzochukwu2015proceedings}.
+
+Devido a adversidade no gerenciamento do ambiente, algumas abordagens para a automação dos ambientes foram desenvolvidas, utilizando-se de recursos computacionais e tecnologias embarcadas \cite{marangoni2014automaccao, de2015automaccao}. De maneira geral, há o monitoramento do ambiente através de sensores, que transmitem os dados para uma central, podendo ser um microcontrolador onde os dados são interpretados e, com base nas informações obtidas o microcontrolador atua no ambiente. Neste contexto de sensoriamento do ambiente, onde há a troca de informações entre equipamentos, ``coisas" e objetos, entra-se no âmbito de Internet das Coisas do (inglês IoT - \textit{Internet of Things}). 
+
+A IoT é um conceito/paradigma que considera a comunicação e presença pervasiva de objetos que interagem e cooperam entre si em prol de um objetivo comum \cite{friess2013internet}. No contexto dos ambientes protegidos este objetivo pode ser o controle do abrigo, principalmente para tarefas simples, como o reabastecimento da água, controle de temperatura e umidade, ou tarefas ainda mais complexas como identificar pragas, ou qual o tipo de cultivo e em qual estágio de desenvolvimento encontram-se a cultura \cite{james2014internet}.
+
+No entanto, neste contexto, ainda é necessário um gerenciamento, pois o sistema pode apresentar falhas, como sensores danificados, falha de comunicação entre serviços ou até mesmo ataques maliciosos. Em vista deste gerenciamento, a IBM, em 2001 notou a necessidade de sistemas auto-gerenciados, assim propôs uma técnica chamada computação autonômica, essa se apoiaria em quarto pilares denominados, propriedades auto's, quais sejam: auto-cura, auto-configuração, auto-otimização e auto-proteção. \cite{horn2001autonomic}.
+
+Assim este trabalho visa integrar o conceito da IoT com algumas propriedades da computação autonômica, principalmente a auto-cura e auto-configuração, no desenvolvimento de um sistema de controle autônomo para ambientes protegidos.
+
+\section{Motivação e Justificativa}
+
+Em 2001, o número de aparelhos conectados na internet ultrapassou o volume de pessoas em escala mundial, e espera-se que em 2020 o número de objetos conectados esteja entre os valores de 26 a 50 bilhões \cite{james2014internet}. Além do volume dos aparelhos, a tecnologia empregada também cresceu. Possibilitando a criação de dispositivos inteligentes \cite{gubbi2013internet}.
+
+O termo \textit{Internet of Things}, foi escrito por Kevin Ashton em 1999 perante uma apresentação realizada na empresa Procter \& Gamble \cite{ashton2009internet}, onde propunha que os dispositivos deviam se reconhecer e trocar informações entre si no escopo empresarial. Com os conceitos da computação ubíqua, a IoT se consolidou como realidade, com aplicações em inúmeras áreas, como \textit{smart cities}, \textit{health care}, automação industrial, agricultura, etc \cite{Vermesan2014internet}.
+
+Mesmo sendo uma grande revolução, e o imenso avanço tecnológico, a IoT ainda encontra muitos desafios como, qualidade de serviço, como a demora na respostas dos serviços devido ao grande número de dados trafegando na rede \cite{gubbi2013internet}. E este número volumoso de dados é oriundo da vasta quantidade de dispositivos presentes, o que leva também a mais um desafio que é o gerenciamento destes dispositivos.
+
+Em 2001, a IBM propôs um sistema auto-gerenciável, devido a grande complexidade dos sistemas e a dificuldade em gerenciá-los, um sistema auto-gerenciado seria referenciado como sistema autonômico, onde o gerenciamento ocorre de maneira autônoma, sem a necessidade ou com o mínimo de intervenção humana \cite{kephart2003vision}.
+
+Algumas trabalhos já incluem a necessidade de características autonômicos na IoT \cite{friess2013internet, Vermesan2014internet,Nunes2015}. Sistemas autonômicos possuem quatro propriedades que são a base da autonomia dos sistemas, auto-cura, auto-configuração, auto-otimização e auto-proteção.
+
+Este trabalho visa a  integração dos conceitos de IoT com base em algumas propriedades da computação autonômica para ser aplicado em ambiente de cultivo protegido, onde há  necessidade de um monitoramento constante devido a sensibilidade do micro clima criado nos ambientes \cite{purquerio2006manejo}.
+
+
+\section{OBJETIVOS}
+Esta seção apresenta o objetivo geral e os objetivos específicos deste trabalho.
+
+\subsection{Objetivo Geral}
+desenvolver um sistema para o controle de um ambiente protegido utilizando o paradigma da IoT com base na computação autonômica.
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+	\item Estudar as principais características da IoT;
+	\item Estudar as principais características da computação autonômica;
+	\item Propor um sistema de controle autonômico, com base nas tecnologias empregadas na IoT, para abrigos de cultivo;
+	\item Implementar o sistema de controle proposto em (3);
+	\item Avaliar o sistema proposto em (4).
+\end{enumerate}
+
+\section{Organização do trabalho}
+Este documento está organizado em 4 capítulos, os quais irão contextualizar a temática central do trabalho. Os capítulos seguintes abordam os seguintes conteúdos:
+\begin{itemize}
+	\item \textbf{Capítulo 2} Trata sobre os fundamentos de IoT, principais características, arquitetura e infraestrutura.
+	\item \textbf{Capítulo 3} Relata sobre a computação autonômica, descrevendo sobre a definição, propriedades arquitetura e sobre as tomadas de decisão dos elementos autonômicos
+	\item\textbf{Capítulo 4} O capítulo relata sobre o sistema proposto, definindo
+	 características, arquitetura e sobre o funcionamento dos sistema e por fim um cronograma para a próxima etapa deste trabalho.
+\end{itemize}
+
+
+\chapter{internet das Coisas}
+Este capítulo define o conceito de Internet das Coisas (do inglês IoT - \textit{Internet of Things}), a estrutura, arquiteturas e infraestruturas necessárias para a implementação da IoT.
+
+\section{Fundamentos de IoT}
+IoT é um conceito/paradigma que considera a comunicação e presença pervasiva de objetos/coisas que interagem e cooperam entre si através de uma comunicação sem ou com fio, junto com um esquema de endereçamento único na rede de comunicação, criando serviços e aplicações que buscam objetivos comuns. Neste contexto tem-se a ideia de um mundo inteligente onde o real, digital e virtual convergem para a criação de meios como cidades, transportes, agricultura, entre outros. A meta da IoT é permitir que os objetos se conectem na rede em qualquer hora, lugar e com qualquer um, seja objeto ou não, utilizando algum caminho da rede ou serviço \cite{Vermesan2014internet}.
+
+
+IoT é a nova revolução da internet onde cada objeto pode conectar-se na rede, reconhecer coisas e ser reconhecido por outros, atuando no ambiente de maneira inteligente, devido ao fato de poderem se comunicar e disponibilizar suas informações, ou adquirir conhecimento através de sensores ou garimpando dados de outros objetos na rede \cite{friess2013internet}.
+
+
+A união dos protocolos de comunicação sem fio, melhor aquisição de dados do ambientes (aperfeiçoamento de sensores), redução do custo de processadores e microcontroladores, o mercado de startups e grandes empresas desenvolvendo os softwares necessários de gestão e aplicações, deram realidade a este conceito de revolução. Em 2001 o número de aparelhos conectados na internet ultrapassou o volume de pessoas em escala mundial, espera-se que em 2020 o número de objetos conectados esteja na faixa de 26 a 50 bilhões. Para cada PC ou Smartphone conectados na rede existirão por volta de 5 a 10 outros objetos que estarão aptos de fábricas à conexão com a internet. Isso inclui qualquer tipo de produto eletrônico, carros, máquinas industrias, ferramentas e muitos outros que ainda não foram inventados\cite{james2014internet}.
+
+
+Nos dias atuais tem-se redes únicas, onde objetos trocam informações e agem de maneira autônoma ou semiautônoma, como os prédios comerciais e residenciais que possuem sistemas de controle para temperatura, ventilação, iluminação, presença, etc. Nestes sistemas, as redes são individuais, ou seja, não há comunicação com outras redes fora de seu escopo. A IoT tem como objetivo interconectar as redes individuais, formando então uma redes de redes \cite{friess2013internet}. A Figura \ref{fig:1} ilustra uma visão da IoT onde essas redes únicas estariam interconectas
+
+
+\begin{figure}[!htb]
+	\centering
+	\caption{Internet das coisas vista como uma rede de redes}\label{fig:1}
+	\includegraphics[width=0.9\textwidth]{figuras/iot_interligadas.png}
+	
+	Adapatado de Cisco IBSG, April 2011
+\end{figure}
+
+
+A IoT é um conceito que envolve muitas áreas, considerando o contexto e a tecnologia necessária desde sensores, sistemas de comunicação, acumulo de dados, pré-processamento e geração de serviços, não é simples definir de maneira não ambígua o que é IoT. Neste contexto a IoT foi definida pela ITU (\textit{International Telecommunications Union}) e IERC (\textit{European Research Cluster on the Internet of Things}) como uma infra-estrutura de rede global dinâmica com capacidade de se autoconfigurar baseada nos padrões e protocolos de comunicação interoperáveis, onde as ``coisas" \space tanto virtuais como físicas tem identificadores, atributos físicos e personalidades latentes, utilizam interfaces inteligentes e são perfeitamente integradas na rede de informação \cite{Vermesan2014internet}.
+
+
+\subsection{Principais características da IoT}
+As principais características da IoT estão definidas abaixo:
+\begin{itemize}
+	\item Interconectividade dos objetos com a informação e infraestrutura global.
+	\item Coisas relacionadas a serviços, ou seja, os objetos conectados podem disponibilizar serviços na rede.
+	\item Heterogeneidade, os dispositivos conectados na rede, em suma, são heterogêneos, isto é, possuem hardwares e/ou softwares diferentes, e mesmo assim capazes de interagir entre si.
+	\item O estado de um dispositivo na rede pode variar com o tempo e situação, podendo estar em dormência ou ativo, até mesmo desconectado da rede, ou em lugares diferentes.
+	\item O número de coisas/objetos conectados na rede é de tamanha proporção que geram um volume muito considerável de dados na rede.
+\end{itemize}
+
+A IoT não é uma simples tecnologia, é um conceito onde todas as ``coisas" estão conectadas e capacitadas para prover soluções baseadas na integração das informações dos objetos conectados na rede, os quais captam, processam e armazenam e/ou transmitem os dados. Assim, a rápida convergência de tecnologia de comunicação esta tomando lugar em três camadas da inovação da tecnologia: nuvem, dados e comunicação sem ou com fio e dispositivos \cite{dutta2012global}.
+
+\section{Arquitetura}
+
+A IoT deve ser capaz de conectar inúmeros objetos heterogêneos pela rede de comunicação. Para tal, necessita-se de uma arquitetura flexível. Apesar de existirem várias propostas de arquiteturas para a IoT, ainda não há modelo de referência. Um dos projetos de arquitetura para IoT, IoT-A tem com foco trazer uma arquitetura comum fundamentada nas análises das necessidades da indústria e de pesquisadores. \cite{al2015internet, yang2011study}
+
+Segundo \citeonline{al2015internet}, entre as diversas arquiteturas, existe um modelo básico de três camadas para a IoT, sendo elas: Aplicação, Comunicação e percepção (do inglês: \textit{Application, Network e Perception}). Nos modelos mais recentes apresentados na literatura, tem-se a adição de mais algumas camadas de abstração, alcançando um total de cinco, como ilustra a Figura \ref{fig:5}
+
+
+\begin{figure}[!htb]
+	\centering
+	\caption{Arquitetura IoT. (a) Três camadas. (b) Beaseada em middle-ware. (c) Arquitetura orientada a serviços (d) Cinco camadas}\label{fig:5}
+	\includegraphics[width=0.9\textwidth]{figuras/camadas}
+	
+	Adpatado de \citeonline{al2015internet}
+\end{figure}
+
+A camada de percepção ou objetos (dispositivos) é composta por sensores e atuadores, os quais são responsáveis pelo aquisição de dados e atuação no ambiente. Segundo \cite{yun2010research, yang2011study}, esta camada tem função análoga aos cinco sentidos (olfato, tato, audição, paladar e visão),  no sentido de obter dados e informações do ambiente inseridos como temperatura, umidade, movimento, etc. Nesta camada as informações retiradas são digitalizadas e transferida para a próxima camada. É importante ressaltar que há heterogeneidade dos dispositivos que compõe a camada, necessitando padronização de mecanismos \textit{plug and play} \cite{al2015internet}.
+
+A próxima camada, abstração de objetos, transfere os dados recebidos da camada de objetos para a camada de gerenciamento de serviços através de canais seguros. Podendo utilizar diversas tecnologias para a transmissão, por exemplo, RFID, 3G, WiFi, Bluetooh, entre outras \cite{al2015internet}. Segundo \cite{yang2011study} demais funções como computação em nuvem também fazem parte desta camada.
+
+A camada de Gerenciamento de Serviços, ou camada \textit{Middleware} é responsável por parear as requisições de serviços com os serviços disponibilizados na rede. Nesta camada há abstração dos hardware permitindo o desenvolvimento de aplicações de IoT, sem a necessidade de plataformas de hardware específicos, e também toma decisões com base no processamento dos dados obtidos \cite{al2015internet}.
+
+A camada de aplicação provê os serviços requisitados, como as informações obtidas pelos sensores. Tem a capacidade de prover serviços inteligentes de alta qualidade, englobando um vasto mercado, como \textit{smart homes}, automação industrial, \textit{smart healthcare}, entre outros \cite{al2015internet}.
+
+A Camada de Negócios é responsável por gerenciar de maneira global as atividades e serviços da IoT, criando modelos de negócios. Tem como responsabilidade analisar, implementar, monitorar e desenvolver elementos relacionados ao sistemas de IoT. Segundo \citeonline{al2015internet} esta camada provê suporte para processos de tomadas de decisões baseados na análise de Big Data.
+
+
+\section{Infraestrutura}
+
+Para que a IoT seja uma realidade, \citeonline{al2015internet} apontam alguns elementos e tecnologias necessárias para o funcionamento da IoT, sendo eles Identificação, Sensoreamento, Comunicação, Processamento, Serviços e Semântica. A relação está ilustrada na Tabela \ref{tabela1}. De maneira semelhante, a Freescale também relacionou as necessidades e tecnologias necessárias da IoT como ilustra a Figura \ref{fig:6} \cite{khan2012future}.
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Tecnologia necessárias para IoT}\label{fig:6}
+	\includegraphics[width=0.9\textwidth]{figuras/arvore}
+	\\ Adapatado de \citeonline{al2015internet}
+\end{figure}
+
+
+O elemento de identificação (ID), como o nome sugere, é referente a identidade e também ao endereçamento únicos de cada dispositivo e serviços conectados na rede. Segundo \citeonline{vasseur2008ip, kushalnagar2007ipv6, montenegro2007transmission},  há diversos métodos de identificação para sistemas IoT, tais como códigos de produtos eletrônicos (EPC do inglês \textit{Eletronic Product Code}) e codificações ubíquas (uCode) \cite{koshizuka2010ubiquitous}. Para o endereçamento único na rede existem tecnologias como o protocolo IP (Protocolo de internet do inglês \textit{Internet Protocol} ) tanto as versões IPv4 como IPv6. A necessidade de obter tanto endereçamento como identificação únicas é justificada, segundo \cite{al2015internet}, pelo fato dos métodos de identificação, não abrangem uma identidade exclusiva em termos globais, tem-se a necessidade de um endereçamento único, por outro lado, objetos podem utilizar IP's públicos, necessitando métodos de identificação exclusiva para uma melhor distinção.
+
+O elemento de sensoreamento esta relacionado com a camada de Percepção, referente a arquitetura de cinco camadas, onde módulos sensores e atuadores possuem um núcleo de processamento como Arduino, Raspberry Pi, Beagl Bone, etc, capazes de disponibilizarem serviços, tornando-se então \textit{smart things}, objetos inteligentes, ao se conectarem na rede e transmitirem os dados coletados e  processados \cite{al2015internet}.
+
+Com respeito ao item comunicação, tem-se várias tecnologias e métodos para suprir tal necessidade, entre elas podem se destacar: WiFi (\textit{Wireless Fidelity}), Bluetooth, IEEE 802.15.4. Algumas comunicações com fins específicos como RFID (\textit{Radio-Frequency IDentification}), NFC (\textit{Near Field Communication}) entre outras. A tecnologia RFID foi a pioneira em realizar a comunicação M2M (Máquina para Máquina do inglês: \textit{Machine to Machine}). M2M é uma derivação do conceito de comunicação entre objetos da IoT, voltado pro setor industrial \cite{want2006introduction, al2015internet}.
+
+O elemento de processamento, refere-se as unidades processadoras (microcontroladores, microprocessadores, FPGA's - \textit{Field Programmable Gate Array}) integradas com software inteligentes de maneira a prover funcionalidades da IoT. Segundo \cite{al2015internet}, existem diversas plataformas de softwares para desenvolvimento das funcionalidades IoT, nestas plataformas encontram-se sistemas operacionais de tempo real (RTOS do inglês: \textit{Real Time Operation System}), estes são de grande importância devido ao fato de executarem durante todo o tempo de execução dos dispositivos. Neste elemento também se encontram os processamentos em nuvem, possibilitando um comportamento ubíquo, onde a nuvem será responsável pelo processamento de dados mais complexos.
+
+No elemento de Serviço, como o nome sugere, tem-se os serviços que a IoT pode fornecer. Neste contexto tem-se um vasto escopo de aplicações como visto na Figura \ref{fig:6}. Algumas tecnologias como RFID e GPS (\textit{Global Positioning System)}, permitem a integração desses serviços na IoT\cite{al2015internet}.
+
+O elemento semântica segundo \citeonline{barnaghi2012semantics}, é responsável pela interoperabilidade dos sistemas IoT, permitindo aos sistemas heterogêneos comunicarem entre si, transferindo dados não ambíguos. Para isto a semântica permite a extração de conhecimento entre maquinas, este conhecimento está associado ao descobrimento de dispositivos e serviços IoT na rede.
+
+
+
+\abreviatura{GPS}{\textit{Global Positioning System}}
+\abreviatura{RTOS}{\textit{Real Time Operation System}}
+\abreviatura{ID}{Identificação}
+\abreviatura{WiFi}{\textit{Wireless Fidelity}}
+\abreviatura{NFC}{\textit{Near Field Communication}}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[H]
+	\centering
+	\caption{Elementos IoT e Tecnologias Associadas}
+	\label{tabela1}
+	\begin{tabular}{ccc}
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Elementos IoT}} & \multicolumn{1}{c|}{Exemplos}                                                                                                                        \\ \hline
+		\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Identificação}}} & \multicolumn{1}{c|}{\textbf{Nome}} & \multicolumn{1}{c|}{EPC,Code}                                                                                                       \\ \cline{2-3} 
+		\multicolumn{1}{|c|}{}                                        & \multicolumn{1}{c|}{\textbf{Endereço}} & \multicolumn{1}{c|}{IPv4, IPv6}                                                                                                       \\ \hline
+		\multicolumn{2}{|c|}{\textbf{Sensoreamento}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Sensores inteligentes,\\  wearables, embarcados. \\ Atuadores, RFID tags\end{tabular}} \\ \hline
+		\multicolumn{2}{|c|}{\textbf{Comunicação}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}RFID, NFC, UWB, \\ Bluetooth, BLE, Z-Wave,\\ WiFi, LTE-A\end{tabular}}                 \\ \hline
+		\multicolumn{1}{|c|}{\multirow{4}{*}{\textbf{Processamento}}} & \multicolumn{1}{c|}{\textbf{Hardware}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Arduíno, Intel Galileo,\\ Raspberry Pi, Beaglebone,\\ Smart Phones\end{tabular}}       \\ \cline{2-3} 
+		\multicolumn{1}{|c|}{} & 
+		\multicolumn{1}{c|}{\textbf{Software}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}SO (Contiki, TinyOS,\\ LiteOS, Android)\\ Nuvem (Nimbts, Hadoop)\end{tabular}}         \\ \hline
+		\multicolumn{2}{|c|}{\textbf{Serviços}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Smart grid, smart homes,\\ smart city, smart factors,\\ etc.\end{tabular}}             \\ \hline
+		\multicolumn{2}{|c|}{\textbf{Semântica}} & 
+		\multicolumn{1}{c|}{RDF, OWL, EXL} \\ \hline
+	\end{tabular}
+	
+	Fonte: Adaptado de	\cite{al2015internet}.
+\end{table}
+
+
+\chapter{Computação autonômica}
+Este capitulo irá discorrer sobre a definição da computação autonômica, suas propriedades, as propriedades auto's, a arquitetura base para outras arquiteturas de computação autonômica.
+
+\section{definição}
+O termo computação autonômica foi criado em 2001 pela IBM e segundo \citeonline{horn2001autonomic} a mesma tem como propósito gerenciar sistemas computacionais, sem a intervenção humana isto é, tecnologia gerenciando tecnologia. O termo autonômico é uma referência a biologia humana. O sistema nervoso monitora, de maneira autônoma, funções vitais sem a necessidade de um estímulo consciente da mente humana. De maneira análoga sistemas computacionais autonômicos identificariam problemas e necessidades do sistema e resolveriam utilizando mínima ou nula intervenção humana. \cite{computing2003architectural, parashar2005autonomic}
+
+Sistemas autonômicos, de acordo com \citeonline{macedocomputaccao}, são, em uma perspectiva, a evolução dos sistemas automáticos. Sistema automático tem como foco evitar a intervenção humana em suas operações, porém isto ocorre para uma faixa de entradas e processos bem definidos. Em contrapartida sistemas autonômicos devem ter a capacidade de extrapolar as saídas, isto é, se adaptar ao ambiente, mesmo que ocorra uma entrada que não era esperada pelo sistema, o mesmo deve ter a capacidade de continuar a operação e lidar com eventuais problemas.
+
+O objetivo principal de um sistema autonômico é ser auto-gerenciado. Para alcançar esta meta, são necessárias quatro propriedades: auto-configuração, auto-cura, auto-proteção e auto-otimização (do inglês: \textit{self-configuring, self-healing, self-protecting e self-optimizing}, respectivamente), como ilustra a Figura \ref{fig:4} \cite{correa2009computaccao}.
+
+\begin{figure}[H]
+	\centering
+	\caption{Propriedades gerais da computação autonômica}\label{fig:4}
+	\includegraphics[width=0.8\textwidth]{figuras/CA}
+	
+	Fonte:  Extraído de \citeonline{correa2009computaccao}
+\end{figure}
+
+
+
+\section{Propriedades da Computação Autonômica}
+De acordo com \citeonline{horn2001autonomic, correa2009computaccao} a definição das quatro propriedades são: 
+\begin{itemize}
+	\item Auto-cura: é a propriedade que tem como objetivo dar capacidade ao sistema de recuperar-se quando ocorre uma falha. Para isto deve habilmente identificar o tipo da falha e então, se possível, repara-lá. Isto deve ocorrer de maneira que os usuários sofram mínima interrupção, evitando também perdas de dados e atrasos significantes no processamento. Caso a recuperação não seja possível é desejável que o sistema continue funcionando sem o componente que veio a falhar. A auto-cura pode ser proativa onde antecipa a falha, através de mecanismos identificadores e realiza processos para prevenir que aconteça falhas.
+	\item Auto-proteção: é a propriedade que tem como objetivo detectar, antecipar, e proteger contra ataques acidentais ou maliciosos. Os componentes de auto-proteção devem ser capazes de detectar comportamentos hostis e tomar decisões para tornar o sistema menos vulnerável.
+	\item Auto-otimização: é a propriedade que tem como objetivo auto-ajustar o sistema para que o mesmo seja mais eficaz de acordo com as necessidades. O auto-ajuste pode fazer com que um dispositivo entre em modo de economia de energia, caso o nível da bateria esteja abaixo do aceitável. Outro exemplo é um sistema onde a temperatura está muito elevada, deve-se diminuir o processamento. Até mesmo aumentar a produtividade do sistema alocando mais recursos, havendo a necessidade.
+	\item Auto-configuração: é a propriedade que tem como objetivo dar a capacidade para o sistema se auto-organizar de maneira dinâmica a mudanças ocorridas no ambientes. Tais alterações podem ter decorrido devido ao funcionamentos das outras propriedades auto-cura, auto-proteção e auto-otimização, adição ou remoção de componentes do sistema, ou mudanças da sua própria característica.
+\end{itemize}
+
+Para que todos estes objetivos sejam alcançados o sistema autonômico deve possuir conhecimento de seu estado interno, \textit{self-aware}, e as condições operacionais externas atuais, \textit{environment-aware}. Através do auto-monitoramento (\textit{self-monitoring}) deve detectar mudanças de contextos, assim as adaptações necessárias podem ser realizadas (\textit{self-adjusting}). De maneira minuciosa, o sistema deve ter conhecimento de seus componentes, características de desempenho desejado, estado atual, a condição das conexões com outros sistemas e de seus recursos disponíveis \cite{correa2009computaccao}.
+
+\section{Arquitetura da computação autonômica}
+
+Segundo \citeonline{correa2009computaccao} as arquiteturas para sistemas autonômicos oferecem, de maneira geral, soluções para automatizar o ciclo de gerência do sistema, como ilustra a Figura \ref{fig:2}, o qual envolve três etapas:
+
+\begin{itemize}
+	\item Medição: coleta, filtra e agrega dados dos elementos gerenciados do sistema.
+	\item Análise e decisão: com a obtenção dos dados, provenientes do monitoramento, examina-os e determina quais ações tomar.
+	\item Controle e execução: executa o as ações e controla as mudanças sugeridas pela etapa anterior.
+\end{itemize}
+
+\begin{figure}[!htb]
+	\centering
+	\caption{Ciclo de gerência}\label{fig:2}
+	\includegraphics[width=0.8\textwidth]{figuras/ciclo_controle}
+	
+	Fonte:  Adaptado de \citeonline{correa2009computaccao}
+\end{figure}
+
+Muitas arquiteturas foram propostas para sistemas autonômicos \cite{huebscher2008survey, dobson2006survey, rosa2006policy} e, segundo \citeonline{macedocomputaccao}, grande parte das arquiteturas são estruturadas de acordo com a arquitetura MAPE (Monitora, Analisa, Planeja, Executa) proposta pela IBM. Esta arquitetura é genérica para sistemas autônomos e serve como base para muitas adaptações e refinamentos. 
+ 
+A arquitetura MAPE foi proposta pela IBM em 2003, e foi adicionado uma letra K a sigla, a letra refere-se ao conhecimento, do Inglês, \textit{Knowledge}, tornando-se assim MAPE-K e, conforme \cite{telescomputaccao} este modelo esta sendo cada vez mais implementado. Segundo a arquitetura, sistemas autonômicos devem ser constituídos de elementos autonômicos todos interconectados. 
+
+	Elemento autonômico, como ilustra a Figura \ref{fig:3}, é constituído de um ou mais elementos gerenciados, estes podem ser qualquer parte do sistema seja software ou hardware, e um único gerente autonômico, que será o responsável por efetuar os ciclos de controle propostos pela arquitetura MAPE. Para tal objetivo os elementos autonômicos devem possuir sensores e atuadores, assim são capazes de monitorar e atuar no meio em que estão instalados. Em algumas etapas, tomadas de decisões podem ocorrer, com mais frequência nos passos análise e planejamento, para isto foi adicionado uma base de conhecimento. \cite{sterritt2003towards, telescomputaccao}
+
+Os dados coletados através dos sensores, são encaminhados ao primeiro passo, monitoramento, onde irá interpretar, processar e abstrair os dados para a fase seguinte, a análise. Nesta etapa, de acordo com a informação recebida, será avaliado a necessidade de mudança da configuração do elemento gerenciado. Para a avaliação podem ser empregadas diversas técnicas como inteligência artificial, estatística, teoria dos jogos, etc. A etapa planejamento é acionada quando na etapa anterior, análise, detecta a necessidade de uma modificação, caso contrário retorna-se para a fase de monitoramento. No passo de planejamento é identificado qual a melhor abordagem para a mudança no elemento gerenciado. A complexidade da mudança é proporcional a complexidade do sistema, este estudo será mais aprofundado na Seção 3.4. Após definido qual abordagem entra em execução a última etapa, onde irá executar o plano apontado pelo passo anterior. Nesta última etapa é constantemente verificada se as instalações foram realizadas com sucesso \cite{telescomputaccao, correa2009computaccao, macedocomputaccao}.
+
+Com relação a base de conhecimento, nela são armazenados informações do gerente autonômico e elemento gerenciado, como contexto e funcionamento dos mesmos, estado atual, previsões. Na base também devem constar as políticas que regem o gerente autonômico. Como é representado o conhecimento, para que facilite a comunicação entre gerentes autonômicos, para isto deve-se utilizar protocolos abertos  \cite{macedocomputaccao}.
+\begin{figure}[!htb]
+	\centering
+	\caption{Elemento autonômico}\label{fig:3}
+	\includegraphics[width=0.8\textwidth]{figuras/elemento_autonomico}
+	
+	Fonte: Adaptado de \citeonline{kopiler2007introduccao} 
+\end{figure}
+
+
+\section{Tomadas de decisão}
+Nas etapas análise e planejamento do gerente autônomo, haverá a necessidade de tomadas de decisões. Para este objetivo o elemento autônomo deve possuir, além da base de conhecimento, algoritmos que auxiliem nestas decisões. As escolhas destes algoritmos estão vinculados ao grau de complexidade do sistema, e não do problema. Segundo \citeonline{macedocomputaccao} alguns problemas complexos, podem ser solucionados utilizando métodos simples, sem a necessidade de algoritmos ``inteligentes". Por exemplo, alguns sistemas requerem apenas uma mudanças de parâmetros, como trocar alguns valores. Assim uma regressão polinomial seria suficiente.
+
+Para melhor entendimento das decisões e ter base para qual tipo de algoritmo/método utilizar, tem-se a necessidade de formalizar os problemas de decisão em dois tipos: imutáveis e mutáveis. Para tal objetivo, \citeonline{macedocomputaccao} formaliza problemas de decisão com a Equação:
+\begin{equation}
+f=(i{_0}, i{_1},...,i{_t})\longmapsto o{_t}
+\end{equation}
+
+Onde $f$ é função de resposta do sistema, possuindo um conjunto de entradas $i$ e um conjunto de parâmetros de saídas $o$. Onde $t \in[0,\infty)$. Os valores de entradas e saídas podem ser tanto discretos quanto contínuos. 
+
+Problemas de decisão imutáveis são relativamente mais simples, onde para um mesmo conjunto de entradas sempre haverá a mesma saída, isto é, nem sempre para a mesma entrada terá a mesma saída, porém o contexto deve ser interpretado ou seja, para um conjunto de entradas o conjunto de saídas será o mesmo. Para formalizar o que são problemas de decisão imutáveis,e segundo \citeonline{macedocomputaccao} estes devem atender a três condições: 
+\begin{itemize}
+	\item A quantidade	de parâmetros de entradas e o seu domínio de valores não mudam com o tempo
+	
+	\item A quantidade	de parâmetros de saídas e o seus domínios de valores não mudam com o tempo
+	
+	\item A função $f$ é constante no tempo.
+\end{itemize}
+
+Devido a característica invariável do problema de decisão imutável, uma solução satisfatória pode ser proveniente de modelos tão simples quanto regressões lineares ou polinomiais, ou solução mais complexas como algoritmos genéticos, redes neurais, aprendizado de máquinas etc. A escolha do método irá depender das capacidades de quem irá implementá-las para identificar a função de resposta e da complexidade do problema.
+
+Problemas de decisão mutáveis são aqueles que violam qualquer uma das três regras citadas anteriormente. Neste cenário os problemas de decisão devem se adaptar as novas regras de operações. Problemas imutáveis podem ocorrer ao ser acrescentado um novo tipo de entrada, ou ser demandado novos tipos de respostas. Para este contexto, segundo \citeonline{macedocomputaccao}, é aconselhável utilizar algorítimos ou métodos de aprendizagem de máquina ou inteligência artificial com aprendizado online. Assim capacita o sistema para se adaptar as mudanças do problema.
+
+
+
+\chapter{Proposta de um sistema de controle autonômico para abrigos de cultivo}
+Este capítulo descreve o sistema, de controle para abrigos de cultivos proposto neste trabalho. Será apresentado o contexto geral do sistema e arquitetura do sistema.
+
+\section{Visão geral do sistema proposto}
+A contexto onde o sistema irá atuar é composto por abrigos de cultivos equipados em seu interior de sensores, atuadores, e uma central de processamento, ao lado externo do abrigo tem-se uma mini-estação meteorológica, e um sistema de alimentação, o sistema irá contar também com um comunicação com uma nuvem, conforme ilustra a Figura \ref{fig:a}. Segue uma breve descrição dos componentes ilustrados:
+
+\begin{itemize}
+	\item \textbf{Sensores}: responsáveis pelo sensoriamento e obtenção dos dados.
+	\item \textbf{Gateway/Central}: processamento dos dados menos complexos, como leituras de temperatura, umidade, luz, etc e acionamento dos atuadores.
+	\item\textbf{Nuvem}: armazenamento de informações, históricos, processamento de dados complexos, como tratamento de imagens, permitindo a central buscar informações sobre regras de controle para a cultura cultivada no interior do ambiente protegido.
+	\item\textbf{Estação Meteorológica}: sensoreamento do ambiente externo.
+	\item\textbf{Módulo de energia}: alimentação do sistema. 
+\end{itemize}
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Sistema de controle autonômico para abrigos de cultivo}\label{fig:a}
+	\includegraphics[width=1\textwidth]{figuras/ArquiteturaSistema.jpg}
+	
+	Fonte: Cristiano Abreu (2016)
+	
+\end{figure}
+
+
+
+Para o desenvolvimento do sistema proposto, o mesmo deve possuir algumas características tanto de IoT, como de computação autonômica além da estrutura necessária para o controle. As seções a seguir descrevem as características de hardware e de software do sistema proposto.
+
+\subsection{Características de Hardware}
+A parte física do sistema contará com módulos sensores equipados com sensores responsáveis pela obtenção dos dados do ambiente, equipamento de comunicação via rádio e um microcontrolador para tornar estes módulos em \textit{smart things}, similares aos da Figura \ref{fig:9} (a). 
+
+Módulos atuadores serão equipados com os mesmos componentes que os módulos sensores, apenas substituindo os sensores por componentes para acionamento de atuadores como ventiladores sombrites, etc. Simulares aos da Figura \ref{fig:9} (a).
+
+Ambos os módulos irão identificar-se ao entrarem na rede de comunicação, enviando uma mensagem para a central informando o tipo do módulo e quais serviços podem prover para o controle do abrigo.
+
+A central será composta por um microcontrolador com maior capacidade de processamento, comparado aos microcontroladores dos módulos, esta central terá redundância para prover maior autonomia para o sistema. Este módulo irá realizar o gerenciamento dos módulos sensores e atuadores através de um gerente autonômico que irá aplicar os ciclos de gerência da computação autonômica, tratando os módulos como elementos gerenciados.
+
+A estação meteorológica será responsável por monitorar o clima externo do ambiente de cultivo, assemelhando-se ao módulos sensores, possuindo equipamentos de sensoreamento como, barômetro, umidade, temperatura, entre outros necessários para o monitoramento do clima.
+
+Estes componentes citados até então se enquadram no contexto de ``coisas" \space no âmbito de IoT, onde trocam informações e oferecem serviços em prol do controle do abrigo de cultivo. A Figura \ref{fig:9} ilustra os módulos sensores/atuadores e o módulo central.
+
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Módulos: (a) central; (b) sensor/atuador }\label{fig:9}
+	\includegraphics[width=0.8\textwidth]{figuras/modulos}
+	
+\end{figure}
+
+
+%\begin{figure}[!htb]
+%	\centering
+%	\caption{Arquitetura do sistema}\label{fig:7}
+%	\includegraphics[width=0.5\textwidth]{figuras/arquiteturaSistema.png}
+%	
+%\end{figure}
+
+
+\section{Características de Software}
+O parte virtual do sistema conta com o \textit{middleware} ou RTOS, gerente autonômico embarcado na central e a nuvem. A central irá implementar o gerente autonômico que irá constantemente monitorar os elementos gerenciados (módulos sensores e atuadores), a fim de realizar as propriedades autonômicas, auto-configuração e auto-cura. O \textit{middleware} ou RTOS presente na central será responsável por manter a execução das tarefas do sistema com objetivo de controlar o ambiente de cultivo.
+
+A nuvem irá conter banco dados com informações referentes as regras de controle do abrigo e executará algorítimos de processamento de imagens para identificar a cultura cultivada.
+
+Todos os componentes, módulos sensores/atuadores, central e nuvem irão implementar protocolos de comunicação, para que seja possível a troca de informações entre os componentes.
+
+\section{Execução do sistema}
+ Como citado nas seções anteriores tem-se em mais baixo nível os elementos gerenciados, onde cada módulo terá uma identificação (ID) única assim ao enviarem a mensagem de apresentação  conterá o nome, tipo, e estado dos mesmos possibilitando a central o reconhecimento de cada módulo. A central onde estará empregada o Middleware ou RTOS, irá reconhecer e mapear os módulos e decidir se irá ou não habilitá-los a entrar em execução. A central irá enviar uma mensagem contendo o ID do destinatário, e a ordem de execução ou \textit{standy-by}. Os módulos sensores ao receberem a resposta positiva da central começam a funcionar e enviar os dados de sensoriamento para a central, que irá armazenar e analisar as informações recebidas, mantendo um histórico. 
+ 
+ No caso dos atuadores, estes irão entrar com mensagem de apresentação mostrando quais serviços podem oferecer, por exemplo, ventilação, irrigação, fertilização, iluminação etc. e ao receberem uma resposta positiva da central ficam em modo de escuta, esperando a solicitação de serviço, caso contrário ficam esperando uma ordem de ativação da central..
+ 
+ Para o acionamento dos atuadores a central irá requisitar dados de reconhecimento da cultura e dados do ambiente externo e então repassar estes dados à nuvem, esta por sua vez irá processar os dados, reconhecendo o contexto e enviando como resposta as regras de controle.
+ 
+ O gerente autonômico, implementado na central, irá constantemente analisar os dados recebidos dos elementos gerenciados, a fim de acionar as propriedades de autoconfiguração e autocura. Caso houver alguma mudança no sistema, como a inserção de novos elementos gerenciados, a propriedade auto-configuração irá ser executada, ajustando o sistema para a nova configuração. Caso uma falha seja detectada pelo gerente autonômico, a propriedade auto-cura será acionada para que garanta a funcionalidade do sistema de controle, sem a perda de confiabilidade, ou seja, que o sistema execute de maneira correta mesmo com dados impróprios ou por queda de sensores. Por exemplo, caso um módulo sensor venha a falhar, o sistema irá executar um protocolo de recuperação, detectando qual o tipo da falha e qual a melhor abordagem para a recuperação do sistema, caso seja possível recuperar o módulo, ou acionar um módulo que esteja em \textit{stand-by}, neste caso apenas a propriedade auto-cura irá ser ativada. Porém se não for possível contornar a falha ou seja, a propriedade auto-configuração deve ser acionada, além da auto-cura, para o rearranjo do sistema. A Figura \ref{fig:8} exemplifica alguns funcionamentos.
+ 
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama de Sequência}\label{fig:8}
+	\includegraphics[width=1\textwidth]{figuras/sequencia}
+	
+\end{figure}
+
+\section{Cronograma}
+\begin{table}[H]
+	\centering
+	\caption{Cronograma TCC-II}
+	\label{my-label}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+			\hline
+			& Jan/17 & Fev/17 & Mar/17 & Abr/17 & Mai/17 & Jun/17 & Jul/17 \\ \hline
+			Definição do hardware                                                                                & x      & x      &        &        &        &        &        \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Definição do protocolo de \\ comunicação (central e módulos)\end{tabular} & x      &        &        &        &        &        &        \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Desenvolvimento e teste \\ do protocolo\end{tabular}                      & x      & x      &        &        &        &        &        \\ \hline
+			Criação de módulos                                                                                   &        & x      & x      &        &        &        &        \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Definição do protocolo de \\ comunicação (central-nuvem)\end{tabular}     &        & x      &        &        &        &        &        \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Desenvolvimento e teste\\ do Protocolo\end{tabular}                       &        & x      & x      &        &        &        &        \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Implementação do Gerente\\ Autonômico\end{tabular}                        &        &        &        & x      & x      &        &        \\ \hline
+			Teste de integração                                                                                  &        &        &        &        & x      &        &        \\ \hline
+			Teste de sistema                                                                                     &        &        &        &        & x      & x      &        \\ \hline
+			Análise e escrita dos resultados                                                                     &        &        &        &        & x      & x      &        \\ \hline
+			Considerações finais                                                                                 &        &        &        &        &        & x      &        \\ \hline
+			Entrega TCC II                                                                                       &        &        &        &        &        &        & x      \\ \hline
+			Defesa TCC II                                                                                        &        &        &        &        &        &        & x      \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+\bibliographystyle{ufscThesis/ufsc-alf}
+\bibliography{bibliografia}
+
+
+%--------------------------------------------------------
+% Elementos pós-textuais
+
+%\apendice
+%\chapter{Exemplificando um Apêndice}
+%Texto do Apêndice aqui. 
+
+%\anexo
+%\chapter{Exemplificando um Anexo}
+%Texto do anexo aqui.
+\end{document}
